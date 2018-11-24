@@ -1,28 +1,7 @@
 import unittest
 from osc import oscerr
 from staged_request import StagedRequest
-
-
-class MockCommandLineObject(object):
-    def __init__(self, **args):
-        if 'apiurl' in args:
-            self._apiurl = args['apiurl']
-        else:
-            self._apiurl = 'http://frontend:3000'
-
-    @property
-    def apiurl(self):
-        return self._apiurl
-
-    def mainproject(self):
-        return "1"
-
-    def project(self):
-        return "3"
-
-    def request(self):
-        return "1"
-
+from mock_commandline_object import MockCommandLineObject
 
 class TestStagedRequestCreation(unittest.TestCase):
 
