@@ -48,6 +48,11 @@ list all staged requests, for a specific staging project:
 osc staging staged_requests -m home:Admin -p home:Admin:Staging:A
 ```
 
+see a specific staging project:
+
+```
+osc staging staging_projects -m home:Admin -p home:Admin:Staging:A
+```
 
 IMPORTANT:
 

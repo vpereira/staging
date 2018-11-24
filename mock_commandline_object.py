@@ -20,7 +20,6 @@ class MockCommandLineObject(object):
         else:
             self._request = None
 
-
     @property
     def apiurl(self):
         return self._apiurl
@@ -28,9 +27,11 @@ class MockCommandLineObject(object):
     @property
     def mainproject(self):
         return self._mainproject
+
     @property
     def project(self):
         return self._project
+
     @property
     def request(self):
         return self._request
