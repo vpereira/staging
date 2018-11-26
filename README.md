@@ -35,7 +35,7 @@ osc staging staging_projects -m home:Admin
 
 select/stage request 1, in the staging project home:Admin:Staging:A, from the
 staging workflow, connected with main proejct home:Admin
- 
+
 
 ```
 osc staging stage_request -r 1 -m home:Admin -p home:Admin:Staging:A
@@ -52,6 +52,19 @@ see a specific staging project:
 
 ```
 osc staging staging_projects -m home:Admin -p home:Admin:Staging:A
+```
+
+push a request to the excluded_requests:
+
+```
+osc staging excluded_requests_create -m home:Admin -r 2
+```
+
+remove a request from the excluded_requests:
+
+```
+osc staging excluded_requests_delete -m home:Admin -r 2
+
 ```
 
 IMPORTANT:

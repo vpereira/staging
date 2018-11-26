@@ -6,13 +6,13 @@ from staging_base import StagingBase
 
 class StagedRequest(StagingBase):
 
-    staged_requests_commands = [
+    commands = [
         'stage_request',
         'unstage_request',
         'staged_requests']
 
     def __init__(self, cmd, opts):
-        if cmd not in self.staged_requests_commands:
+        if cmd not in self.commands:
             raise oscerr.WrongArgs('{} not accepted'.format(cmd))
         super(self.__class__, self).__init__(cmd, opts)
 
@@ -25,7 +25,7 @@ class StagedRequest(StagingBase):
                         'staging',
                         self.main_project,
                         'staging_projects',
-                        self.staging_project,
+                        self.project,
                         'staged_requests']),
                 data=data))
 
@@ -38,7 +38,7 @@ class StagedRequest(StagingBase):
                         'staging',
                         self.main_project,
                         'staging_projects',
-                        self.staging_project,
+                        self.project,
                         'staged_requests']),
                 data=data))
 
@@ -50,7 +50,7 @@ class StagedRequest(StagingBase):
                         'staging',
                         self.main_project,
                         'staging_projects',
-                        self.staging_project,
+                        self.project,
                         'staged_requests'])))
 
     def run(self):
@@ -63,7 +63,7 @@ class StagedRequest(StagingBase):
         else:
             raise oscerr.WrongArgs(
                 'Unknown %s action. Choose one of %s.' %
-                (self.cmd, ', '.join(staged_requests_commands)))
+                (self.cmd, ', '.join(self.commands)))
 
     def request_template(self):
         return '<requests><number>{0}</number></requests>'.format(

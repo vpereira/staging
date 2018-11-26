@@ -6,10 +6,10 @@ from staging_base import StagingBase
 
 class StagingProject(StagingBase):
 
-    staging_projects_commands = ['staging_projects', 'staging_project']
+    commands = ['staging_projects', 'staging_project']
 
     def __init__(self, cmd, opts):
-        if cmd not in self.staging_projects_commands:
+        if cmd not in self.commands:
             raise oscerr.WrongArgs('{} not accepted'.format(cmd))
         super(self.__class__, self).__init__(cmd, opts)
 
@@ -27,4 +27,4 @@ class StagingProject(StagingBase):
         else:
             raise oscerr.WrongArgs(
                 'Unknown %s action. Choose one of %s.' %
-                (self.cmd, ', '.join(staging_projects_commands)))
+                (self.cmd, ', '.join(self.commands)))

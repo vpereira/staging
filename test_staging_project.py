@@ -17,6 +17,10 @@ class TestStagingProject(unittest.TestCase):
     def test_url(self):
         sp = StagingProject('staging_projects', MockCommandLineObject(**{}))
         self.assertEquals(sp.url(['foo']), 'http://frontend:3000/foo')
+        self.assertEquals(
+            sp.url(
+                ['foo'], {
+                    'description': 'foo'}), 'http://frontend:3000/foo?description=foo')
 
 
 if __name__ == '__main__':

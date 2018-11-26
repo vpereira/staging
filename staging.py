@@ -6,6 +6,14 @@ from osc import conf
 from osc import core
 from staged_request import StagedRequest
 from staging_project import StagingProject
+from excluded_request import ExcludedRequest
+
+
+RUN_CLASSES = {
+    'staged_requests': StagedRequest,
+    'excluded_request': ExcludedRequest,
+    'staging_project': StagingProject
+}
 
 
 @cmdln.option('-r', '--request', metavar='request',
@@ -31,15 +39,10 @@ def do_staging(self, subcmd, opts, *args):
         osc staged_requests -m openSUSE:Factory -p openSUSE:Staging:A
     """
 
-    staged_requests_commands = [
-        'stage_request',
-        'unstage_request',
-        'staged_requests']
-    staging_projects_commands = ['staging_projects']
-
     plugin_name = self.lastcmd[0]
 
-    cmds = staged_requests_commands + staging_projects_commands
+    cmds = StagedRequest.commands + \
+        StagingProject.commands + ExcludedRequest.commands
 
     if not args or args[0] not in cmds:
         raise oscerr.WrongArgs(
@@ -52,7 +55,14 @@ def do_staging(self, subcmd, opts, *args):
 
     cmd = args[0]
 
-    if cmd in staged_requests_commands:
-        print StagedRequest(cmd, opts).run()
+    run_class = ''
+
+    if cmd in StagedRequest.commands:
+        run_class = 'staged_requests'
+    elif cmd in ExcludedRequest.commands:
+        run_class = 'excluded_request'
     else:
-        print StagingProject(cmd, opts).run()
+        run_class = 'staging_project'
+
+    if run_class in RUN_CLASSES.keys():
+        print RUN_CLASSES[run_class](cmd, opts).run()
