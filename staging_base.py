@@ -7,7 +7,7 @@ class StagingBase(object):
         self.main_project = opts.mainproject
         self.apiurl = opts.apiurl
         self.project = opts.project
-        self.request = opts.request
+        self.bs_request = opts.request
 
     def url(self, *args, **kargs):
         return makeurl(self.apiurl, *args)

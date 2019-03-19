@@ -3,7 +3,7 @@ osc plugin to play with the new staging endpoint
 to build it:
 
 ```
-docker build -ti $USER/staging .
+docker build -t $USER/staging .
 ```
 
 to run it:
